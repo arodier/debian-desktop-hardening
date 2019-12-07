@@ -1,0 +1,6 @@
+---
+
+- name: Install all apparmor profiles
+  hosts: all
+  roles:
+    - role: firefox-apparmor

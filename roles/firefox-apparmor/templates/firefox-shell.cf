@@ -1,0 +1,15 @@
+# Firefox launcher profile
+#include <tunables/global>
+# Deployed the {{ ansible_date_time.date }} at {{ ansible_date_time.time }}
+
+/usr/bin/firefox {
+  #include <abstractions/base>
+  #include <abstractions/bash>
+
+  /usr/bin/dash ix,
+  /usr/bin/dash ix,
+  /usr/bin/firefox r,
+  /usr/bin/which mrix,
+  /usr/bin/which r,
+  /usr/lib/firefox-esr/firefox-esr Px,
+}

@@ -1,0 +1,74 @@
+# Firefox binary AppArmorProfile
+# Deployed the {{ ansible_date_time.date }} at {{ ansible_date_time.time }}
+#include <tunables/global>
+
+/usr/lib/firefox-esr/firefox-esr {
+  #include <abstractions/X>
+  #include <abstractions/base>
+  #include <abstractions/enchant>
+  #include <abstractions/fonts>
+  #include <abstractions/mesa>
+  #include <abstractions/nameservice>
+  #include <abstractions/ubuntu-browsers.d/ubuntu-integration>
+  #include <abstractions/user-tmp>
+
+  ptrace trace peer=/usr/lib/firefox-esr/firefox-esr,
+
+  # This is probably due to firefox trying to check
+  # if it is the default browser on the system
+  allow /usr/share/gnome/applications/ r,
+  allow /usr/bin/python3.7 r,
+
+  /dev/ r,
+
+  # Configuration files
+  /etc/firefox-esr/ r,
+  /etc/firefox-esr/** r,
+  /etc/mime.types r,
+
+  /proc/@{pid}/** r,
+  /sys/bus/pci/devices/ r,
+  /sys/devices/** r,
+
+  # Binaries
+  /usr/bin/lsb_release px,
+  /usr/lib/firefox-esr/firefox-esr mr,
+  /usr/lib/firefox-esr/firefox-esr px,
+
+  # from /usr/share
+  /usr/share/applications/ r,
+  /usr/share/applications/screensavers/ r,
+  /usr/share/firefox-esr/** r,
+  /usr/share/glib-2.0/** r,
+  /usr/share/icons/ r,
+  /usr/share/icons/** r,
+  /usr/share/mime/aliases r,
+  /usr/share/mime/globs2 r,
+  /usr/share/mime/magic r,
+  /usr/share/mime/mime.cache r,
+  /usr/share/mime/subclasses r,
+  /usr/share/pixmaps/ r,
+  /usr/share/themes/** r,
+
+  /usr/share/webext/** r,
+  /usr/share/mozilla/** r,
+
+  owner /dev/shm/** rw,
+  owner /dev/shm/org.mozilla.ipc.* r,
+  owner /dev/shm/org.mozilla.ipc.* w,
+
+  owner /home/*/.cache/** k,
+  owner /home/*/.cache/** rw,
+
+  owner /home/*/.config/dconf/user r,
+  owner /home/*/.config/gtk-3.0/settings.ini r,
+  owner /home/*/.config/mimeapps.list r,
+  owner /home/*/.icons/ r,
+  owner /home/*/.local/share/applications/ r,
+
+  owner /home/*/.mozilla/** k,
+  owner /home/*/.mozilla/** r,
+  owner /home/*/.mozilla/** w,
+
+  owner /run/user/@{uid}/** w,
+}

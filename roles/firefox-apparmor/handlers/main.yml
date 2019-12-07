@@ -1,0 +1,11 @@
+---
+
+- name: Enforce AppArmor profiles
+  shell: 'aa-enforce {{ profile }}'
+  args:
+    warn: false
+  with_items:
+    - /etc/apparmor.d/usr.lib.firefox-esr.firefox-esr
+    - /etc/apparmor.d/usr.bin.firefox
+  loop_control:
+    loop_var: profile

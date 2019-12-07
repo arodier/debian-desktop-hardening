@@ -1,0 +1,14 @@
+---
+
+- name: Copy the AppArmor profile for Firefox
+  notify: Enforce AppArmor profiles
+  template:
+    src: '{{ profile.src }}'
+    dest: '{{ profile.dest }}'
+  with_items:
+    - src: firefox-esr.cf
+      dest: /etc/apparmor.d/usr.lib.firefox-esr.firefox-esr
+    - src: firefox-shell.cf
+      dest: /etc/apparmor.d/usr.bin.firefox
+  loop_control:
+    loop_var: profile
