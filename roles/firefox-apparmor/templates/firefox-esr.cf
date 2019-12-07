@@ -70,5 +70,7 @@
   owner /home/*/.mozilla/** r,
   owner /home/*/.mozilla/** w,
 
+  owner /home/*/.local/share/recently-used.xbel r,
+
   owner /run/user/@{uid}/** w,
 }
