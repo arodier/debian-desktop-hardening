@@ -1,0 +1,14 @@
+---
+
+- name: Copy the AppArmor profile for Evolution
+  notify: Enforce AppArmor profiles
+  template:
+    src: '{{ profile.src }}'
+    dest: '{{ profile.dest }}'
+  with_items:
+    - src: evolution.cf
+      dest: /etc/apparmor.d/usr.bin.evolution
+    - src: evolution-alarm-notify.cf
+      dest: /etc/apparmor.d/usr.lib.evolution.evolution-data-server.evolution-alarm-notify
+  loop_control:
+    loop_var: profile

@@ -1,0 +1,21 @@
+# Evolution Alarm Notify AppArmor Profile
+# Deployed the {{ ansible_date_time.date }} at {{ ansible_date_time.time }}
+#include <tunables/global>
+
+/usr/lib/evolution/evolution-data-server/evolution-alarm-notify {
+  #include <abstractions/base>
+  #include <abstractions/nameservice>
+
+  allow /usr/lib/evolution/evolution-data-server/evolution-alarm-notify mr,
+
+  allow /run/user/@{uid}/gdm/Xauthority r,
+  allow /run/user/@{uid}/dconf/user rwk,
+
+  allow /usr/share/glib-2.0/schemas/gschemas.compiled r,
+
+  allow /usr/share/themes/** r,
+
+  owner /home/*/.config/gtk*/* r,
+  owner /home/*/.config/dconf/user r,
+  owner /run/user/@{uid}/** rwk,
+}

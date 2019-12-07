@@ -1,0 +1,54 @@
+# Evolution AppArmor Profile
+# Deployed the {{ ansible_date_time.date }} at {{ ansible_date_time.time }}
+#include <tunables/global>
+
+/usr/bin/evolution {
+  #include <abstractions/base>
+  #include <abstractions/gnome>
+  #include <abstractions/mesa>
+  #include <abstractions/nameservice>
+  #include <abstractions/enchant>
+
+  /usr/bin/dash mrix,
+  /usr/bin/gpg px,
+  /usr/bin/evolution mr,
+  /usr/lib/evolution/evolution-data-server/evolution-alarm-notify px,
+
+  /sys/devices/** r,
+
+  /usr/bin/evolution mr,
+  /usr/lib/evolution/evolution-data-server/evolution-alarm-notify px,
+
+  # When using html emails
+  allow /usr/lib/x86_64-linux-gnu/webkit2gtk-4.0/WebKitWebProcess mrix,
+  allow /usr/lib/x86_64-linux-gnu/webkit2gtk-4.0/WebKitNetworkProcess mrix,
+  allow /usr/lib/x86_64-linux-gnu/libproxy/*/pxgsettings mrix,
+  allow /usr/lib/x86_64-linux-gnu/gstreamer1.0/gstreamer-1.0/gst-plugin-scanner mrix,
+  owner /home/*/.local/share/webkitgtk/** rwk,
+  owner /home/*/.cache/gstreamer-1.0/** rwk,
+  /usr/share/publicsuffix/public_suffix_list.dat r,
+
+  owner /home/*/.cache/evolution/** r,
+  owner /home/*/.cache/evolution/** w,
+  owner /home/*/.cache/evolution/** k,
+  owner /home/*/.local/share/evolution/ r,
+  owner /home/*/.local/share/evolution/** rwk,
+
+  owner /home/*/.config/** rwk,
+  owner /home/*/.pki/** rwk,
+  owner /home/*/.gnupg/* r,
+
+  allow /dev/ r,
+
+  owner /proc/@{pid}/fd/ r,
+  owner /proc/@{pid}/statm r,
+  owner /proc/@{pid}/cmdline r,
+  owner /proc/@{pid}/smaps r,
+
+  owner /run/user/@{uid}/** rwk,
+
+  allow /usr/share/xml/iso-codes/*.xml r,
+  allow /usr/share/icons/** r,
+  allow /usr/share/evolution/** r,
+  allow /usr/share/publicsuffix/** r,
+}

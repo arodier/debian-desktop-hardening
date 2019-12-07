@@ -1,0 +1,11 @@
+---
+
+- name: Enforce AppArmor profiles
+  shell: 'aa-enforce {{ profile }}'
+  args:
+    warn: false
+  with_items:
+    - /etc/apparmor.d/usr.bin.evolution
+    - /etc/apparmor.d/usr.lib.evolution.evolution-data-server.evolution-alarm-notify
+  loop_control:
+    loop_var: profile
