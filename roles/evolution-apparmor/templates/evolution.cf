@@ -26,13 +26,14 @@
   allow /usr/lib/x86_64-linux-gnu/gstreamer1.0/gstreamer-1.0/gst-plugin-scanner mrix,
   owner /home/*/.local/share/webkitgtk/** rwk,
   owner /home/*/.cache/gstreamer-1.0/** rwk,
-  /usr/share/publicsuffix/public_suffix_list.dat r,
+  allow /usr/share/publicsuffix/public_suffix_list.dat r,
 
   owner /home/*/.cache/evolution/** r,
   owner /home/*/.cache/evolution/** w,
   owner /home/*/.cache/evolution/** k,
   owner /home/*/.local/share/evolution/ r,
   owner /home/*/.local/share/evolution/** rwk,
+  owner /home/*/.cache/thumbnails/** r,
 
   owner /home/*/.config/** rwk,
   owner /home/*/.pki/** rwk,
