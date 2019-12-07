@@ -1,0 +1,5 @@
+DPkg {
+    // lock or unlock the system
+    Pre-Invoke { "/usr/local/sbin/parts-lock unlock"; };
+    Post-Invoke { "/usr/local/sbin/parts-lock lock"; };
+};

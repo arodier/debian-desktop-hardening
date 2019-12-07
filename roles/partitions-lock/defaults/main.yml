@@ -1,0 +1,39 @@
+---
+
+partitions:
+  - mount_point: /
+    lock_opts: defaults,ro
+    unlock_opts: rw
+    unlock: true
+  - mount_point: /boot
+    lock_opts: defaults,ro
+    unlock_opts: rw
+    unlock: true
+  - mount_point: /usr
+    lock_opts: defaults,ro
+    unlock_opts: rw
+    unlock: true
+  - mount_point: /tmp
+    lock_opts: noexec,nodev,nosuid
+    unlock_opts: exec,nodev,nosuid
+    unlock: true
+  - mount_point: /var
+    lock_opts: noexec,nodev,nosuid
+    unlock_opts: nodev,nosuid
+    unlock: true
+  # These partitions are always ‘locked’
+  - mount_point: /home
+    lock_opts: noexec,nodev,nosuid
+    unlock: no
+  - mount_point: /root
+    lock_opts: noexec,nodev,nosuid
+    unlock: no
+  - mount_point: /var/tmp
+    lock_opts: noexec,nodev,nosuid
+    unlock: no
+  - mount_point: /var/lib/docker
+    lock_opts: noexec,nodev,nosuid
+    unlock: no
+  - mount_point: /var/lib/libvirt
+    lock_opts: noexec,nodev,nosuid
+    unlock: no

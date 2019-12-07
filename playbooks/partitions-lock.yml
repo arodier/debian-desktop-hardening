@@ -1,0 +1,6 @@
+---
+
+- name: Install the partitions locking
+  hosts: all
+  roles:
+    - role: partitions-lock

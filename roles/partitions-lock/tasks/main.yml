@@ -1,0 +1,16 @@
+---
+
+- name: Set the list of managed partitions
+  set_fact:
+    managed_parts: '{{ partitions | selectattr("unlock", "equalto", true) | list }}'
+
+- name: Generate the script
+  template:
+    src: parts-lock.sh
+    dest: /usr/local/sbin/parts-lock
+    mode: 0700
+
+- name: Generate the package hooks
+  template:
+    src: apt-hooks.cf
+    dest: /etc/apt/apt.conf.d/00part-locks
