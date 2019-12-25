@@ -19,16 +19,18 @@
   allow /usr/share/gnome/applications/ r,
   allow /usr/bin/python3.7 r,
 
-  /dev/ r,
 
   # Configuration files
   /etc/firefox-esr/ r,
   /etc/firefox-esr/** r,
   /etc/mime.types r,
 
+  # Virtual filesystems
+  /dev/ r,
   /proc/@{pid}/** r,
   /sys/bus/pci/devices/ r,
   /sys/devices/** r,
+  owner /run/user/@{uid}/** w,
 
   # Binaries
   /usr/bin/lsb_release px,
@@ -72,5 +74,6 @@
 
   owner /home/*/.local/share/recently-used.xbel r,
 
-  owner /run/user/@{uid}/** w,
+  # When using the browserpass extension
+  allow /usr/lib/browserpass/browserpass px,
 }
