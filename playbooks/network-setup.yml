@@ -1,0 +1,6 @@
+---
+
+- name: Setup network default options
+  hosts: all
+  roles:
+    - role: network-setup

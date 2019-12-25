@@ -3,3 +3,5 @@
 - import_playbook: apparmor-profiles.yml
 
 - import_playbook: partitions-lock.yml
+
+- import_playbook: network-setup.yml

@@ -1,0 +1,13 @@
+---
+
+- name: Disable IPv6
+  sysctl:
+    key: '{{ entry.key }}'
+    value: '{{ entry.value }}'
+  with_items:
+    - key: net.ipv6.conf.all.disable_ipv6
+      value: 1
+    - key: net.ipv6.conf.default.disable_ipv6
+      value: 1
+  loop_control:
+    loop_var: entry
